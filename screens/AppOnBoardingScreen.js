@@ -19,7 +19,7 @@ class AppOnBoardingScreen extends Component {
         onMomentumScrollEnd={this._onMomentumScrollEnd}
       >
         <ImageBackground
-          source={require("../assets/images/slider.png")}
+          source={require("../assets/images/slider0.png")}
           style={{ width: "100%", height: "100%" }}
           style={styles.slide1}
         >
