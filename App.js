@@ -49,12 +49,7 @@ export default class App extends React.Component {
         />
       );
     } else {
-      return (
-      <View style={styles.container}>
-      {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-      <AppContainer />
-      </View>
-      );
+      return <AppContainer />;
     }
   }
 
@@ -66,7 +61,6 @@ export default class App extends React.Component {
         require("./assets/images/check.png"),
         require("./assets/images/map_big.png"),
         require("./assets/images/flyer_big.png"),
-        require("./assets/images/splash.png"),
         require("./assets/images/splash2.png"),
         require("./assets/images/logo_mini.png"),
         require("./assets/images/icona_lista.png"),
@@ -77,7 +71,13 @@ export default class App extends React.Component {
         require("./assets/images/slider0.png")
       ]),
       Font.loadAsync({
+        // This is the font that we are using for our tab bar
+        ...Icon.Ionicons.font,
+        // We include SpaceMono because we use it in HomeScreen.js. Feel free
+        // to remove this if you are not using it in your app
+        "space-mono": require("./assets/fonts/SpaceMono-Regular.ttf"),
         YanoneKaffeesatz: require("./assets/fonts/YanoneKaffeesatz-Regular.ttf"),
+        "YanoneKaffeesatz-Bold": require("./assets/fonts/YanoneKaffeesatz-Bold.ttf")
       })
     ]);
   };
@@ -85,7 +85,7 @@ export default class App extends React.Component {
   _handleLoadingError = error => {
     // In this case, you might want to report the error to your error
     // reporting service, for example Sentry
-    console.warn(error);
+    //console.warn(error);
   };
 
   _handleFinishLoading = () => {
