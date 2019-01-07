@@ -1,12 +1,7 @@
 import React from "react";
-import { StyleSheet, View, Platform, StatusBar } from "react-native";
-import { AppLoading, Asset, Font, Icon } from "expo";
-import {
-  createStackNavigator,
-  createAppContainer,
-  createBottomTabNavigator,
-  createSwitchNavigator
-} from "react-navigation";
+import { StyleSheet } from "react-native";
+import { AppLoading, Asset, Font } from "expo";
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import LoginScreen from "./screens/LoginScreen";
 import AppOnBoardingScreen from "./screens/AppOnBoardingScreen";
 
@@ -16,7 +11,7 @@ const AppNavigator = createSwitchNavigator(
     Login: LoginScreen
   },
   {
-    initialRouteName: "AppOnBoarding",
+    initialRouteName: "Login",
     defaultNavigationOptions: {
       header: null
     }
@@ -61,6 +56,7 @@ export default class App extends React.Component {
         require("./assets/images/check.png"),
         require("./assets/images/map_big.png"),
         require("./assets/images/flyer_big.png"),
+        require("./assets/images/splash.png"),
         require("./assets/images/splash2.png"),
         require("./assets/images/logo_mini.png"),
         require("./assets/images/icona_lista.png"),
@@ -71,13 +67,7 @@ export default class App extends React.Component {
         require("./assets/images/slider0.png")
       ]),
       Font.loadAsync({
-        // This is the font that we are using for our tab bar
-        ...Icon.Ionicons.font,
-        // We include SpaceMono because we use it in HomeScreen.js. Feel free
-        // to remove this if you are not using it in your app
-        "space-mono": require("./assets/fonts/SpaceMono-Regular.ttf"),
-        YanoneKaffeesatz: require("./assets/fonts/YanoneKaffeesatz-Regular.ttf"),
-        "YanoneKaffeesatz-Bold": require("./assets/fonts/YanoneKaffeesatz-Bold.ttf")
+        YanoneKaffeesatz: require("./assets/fonts/YanoneKaffeesatz-Regular.ttf")
       })
     ]);
   };

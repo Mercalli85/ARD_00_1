@@ -5,7 +5,8 @@ import {
   StyleSheet,
   Image,
   ImageBackground,
-  Button
+  Button,
+  TouchableOpacity
 } from "react-native";
 import Swiper from "react-native-swiper";
 
@@ -16,6 +17,7 @@ class AppOnBoardingScreen extends Component {
         style={styles.wrapper}
         activeDotColor={"#17418d"}
         showsButtons={false}
+        loop={false}
         onMomentumScrollEnd={this._onMomentumScrollEnd}
       >
         <ImageBackground
@@ -66,11 +68,12 @@ class AppOnBoardingScreen extends Component {
               style={{ marginTop: 10, marginBottom: 20 }}
               source={require("../assets/images/star_big.png")}
             />
-            <Button
+            <TouchableOpacity
+              style={styles.bottone}
               onPress={() => this.props.navigation.navigate("Login")}
-              title="dio"
-              style={styles.btnonb}
-            />
+            >
+              <Text style={styles.btn_text}>Inizia Subito!</Text>
+            </TouchableOpacity>
           </View>
         </ImageBackground>
       </Swiper>
@@ -81,9 +84,16 @@ class AppOnBoardingScreen extends Component {
 export default AppOnBoardingScreen;
 
 const styles = StyleSheet.create({
-  btnonb: {
-    backgroundColor: "white"
+  bottone: {
+    backgroundColor: "#fdc700",
+    borderRadius: 15,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 35,
+    paddingRight: 35,
+    marginTop: 50
   },
+  btn_text: { fontFamily: "YanoneKaffeesatz", fontSize: 25 },
   container_swiper: {
     flex: 1,
     flexDirection: "column",
