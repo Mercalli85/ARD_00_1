@@ -1,33 +1,7 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import { AppLoading, Asset, Font } from "expo";
-import { createAppContainer, createSwitchNavigator } from "react-navigation";
-import LoginScreen from "./screens/LoginScreen";
-import AppOnBoardingScreen from "./screens/AppOnBoardingScreen";
-
-const AppNavigator = createSwitchNavigator(
-  {
-    AppOnBoarding: AppOnBoardingScreen,
-    Login: LoginScreen
-  },
-  {
-    initialRouteName: "Login",
-    defaultNavigationOptions: {
-      header: null
-    }
-  }
-);
-
-const AppContainer = createAppContainer(AppNavigator);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
+import Navigator from "./navigation/Navigator";
 
 export default class App extends React.Component {
   state = {
@@ -35,16 +9,16 @@ export default class App extends React.Component {
   };
 
   render() {
-    if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
+    if (!this.state.isLoadingComplete) {
       return (
         <AppLoading
           startAsync={this._loadResourcesAsync}
           onError={this._handleLoadingError}
-          onFinish={this._handleFinishLoading}
+          onFinish={() => this.setState({ isLoadingComplete: true })}
         />
       );
     } else {
-      return <AppContainer />;
+      return <Navigator />;
     }
   }
 
@@ -76,9 +50,5 @@ export default class App extends React.Component {
     // In this case, you might want to report the error to your error
     // reporting service, for example Sentry
     //console.warn(error);
-  };
-
-  _handleFinishLoading = () => {
-    this.setState({ isLoadingComplete: true });
   };
 }

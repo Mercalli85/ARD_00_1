@@ -24,6 +24,7 @@ class LoginScreen extends Component {
           </View>
           <View style={styles.body_login}>
             <TextInput
+              autoCorrect={false}
               style={{
                 height: 40,
                 fontFamily: "YanoneKaffeesatz",
@@ -46,6 +47,7 @@ class LoginScreen extends Component {
             />
             <TextInput
               secureTextEntry={true}
+              autoCorrect={false}
               style={{
                 height: 40,
                 fontFamily: "YanoneKaffeesatz",
@@ -73,7 +75,10 @@ class LoginScreen extends Component {
             </TouchableOpacity>
           </View>
           <View style={styles.area_btn}>
-            <TouchableOpacity style={styles.bottoni_login1}>
+            <TouchableOpacity
+              style={styles.bottoni_login1}
+              onPress={() => this.props.navigation.navigate("Logged")}
+            >
               <Text style={styles.bottoni_login_txt}>ACCEDI</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.bottoni_login2}>
