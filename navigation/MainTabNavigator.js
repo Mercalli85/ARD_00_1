@@ -9,6 +9,7 @@ import HomeScreen from "../screens/HomeScreen";
 import ListaScreen from "../screens/ListaScreen";
 import VolantinoScreen from "../screens/VolantinoScreen";
 import MapScreen from "../screens/MapScreen";
+import ComuneScreen from "../screens/ComuneScreen";
 
 const HomeStack = createStackNavigator(
   {
@@ -35,6 +36,7 @@ ListaStack.navigationOptions = {
 };
 
 const VolantinoStack = createStackNavigator({
+  Comune: ComuneScreen,
   Volantino: VolantinoScreen
 });
 
