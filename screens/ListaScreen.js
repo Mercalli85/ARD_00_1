@@ -84,14 +84,6 @@ export default class ListaScreen extends React.Component {
           }
           containerStyle={{ backgroundColor: "#646366", height: 70 }}
         />
-        <View />
-
-        {this.state.cameraRollUri && (
-          <Image
-            source={{ uri: this.state.cameraRollUri }}
-            style={{ width: 200, height: 200 }}
-          />
-        )}
       </ImageBackground>
     );
   }

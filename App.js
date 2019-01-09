@@ -1,5 +1,4 @@
 import React from "react";
-import { StyleSheet } from "react-native";
 import { AppLoading, Asset, Font } from "expo";
 import Navigator from "./navigation/Navigator";
 

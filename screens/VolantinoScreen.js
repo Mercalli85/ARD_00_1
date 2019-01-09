@@ -66,7 +66,7 @@ export default class VolantinoScreen extends React.Component {
               "https://www.ardsicilia.it/wp-content/uploads/2019/01/18H36.pdf"
           }}
         />
-        <Text>FIGA</Text>
+
         {this.state.cameraRollUri && (
           <Image
             source={{ uri: this.state.cameraRollUri }}

@@ -10,9 +10,12 @@
     "expo": "^31.0.6",
     "react": "16.6.3",
     "react-native": "0.57.8",
+    "react-native-communications": "^2.2.1",
     "react-native-elements": "^1.0.0-beta7",
+    "react-native-maps": "^0.22.1",
     "react-native-numeric-input": "^1.6.5",
     "react-native-swiper": "^1.5.14",
+    "react-native-vector-icons": "^6.1.0",
     "react-native-view-shot": "^2.5.0",
     "react-navigation": "^3.0.8"
   },

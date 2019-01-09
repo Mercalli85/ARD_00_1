@@ -10,7 +10,8 @@ import ListaScreen from "../screens/ListaScreen";
 import VolantinoScreen from "../screens/VolantinoScreen";
 import MapScreen from "../screens/MapScreen";
 import ComuneScreen from "../screens/ComuneScreen";
-
+import CataniaScreen from "../screens/CataniaScreen";
+import Catania1Screen from "../screens/Catania1Screen";
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen
@@ -36,7 +37,6 @@ ListaStack.navigationOptions = {
 };
 
 const VolantinoStack = createStackNavigator({
-  Comune: ComuneScreen,
   Volantino: VolantinoScreen
 });
 
@@ -46,7 +46,9 @@ VolantinoStack.navigationOptions = {
 };
 
 const MapStack = createStackNavigator({
-  Settings: MapScreen
+  Comune: ComuneScreen,
+  Catania: CataniaScreen,
+  Catania1: Catania1Screen
 });
 
 MapStack.navigationOptions = {
