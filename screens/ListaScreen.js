@@ -12,8 +12,6 @@ import {
 } from "react-native";
 import { Header } from "react-native-elements";
 
-const MAX_PHOTOS = 20;
-
 export default class ListaScreen extends React.Component {
   state = {
     images: [],
@@ -24,43 +22,7 @@ export default class ListaScreen extends React.Component {
     header: null
   };
 
-  componentDidMount() {
-    this._getPhotos();
-  }
-
-  _getPhotos = async () => {
-    this.setState({ loading: true });
-    const res = await CameraRoll.getPhotos({
-      first: MAX_PHOTOS
-    });
-
-    this.setState({
-      images: [...this.state.images, ...res.edges],
-      loading: false
-    });
-
-    console.log("=======================");
-    console.log("res", res);
-    console.log("=======================");
-  };
-
-  _renderItem = ({ item }) => {
-    return (
-      <View style={styles.imageWrapper}>
-        <Image source={{ uri: item.node.image.uri }} style={StyleSheet.image} />
-      </View>
-    );
-  };
-
-  _keyExtractor = item => item.node.image.filename;
   render() {
-    if (this.state.loading) {
-      return (
-        <View style={styles.loadingWrapper}>
-          <ActivityIndicator />
-        </View>
-      );
-    }
     return (
       <ImageBackground
         source={require("../assets/images/splash2.png")}
@@ -84,6 +46,12 @@ export default class ListaScreen extends React.Component {
           }
           containerStyle={{ backgroundColor: "#646366", height: 70 }}
         />
+        <View />
+        <FlatList
+          data={this.state.images}
+          renderItem={this._renderItem}
+          keyExtractor={this._keyExtractor}
+        />
       </ImageBackground>
     );
   }
@@ -101,10 +69,5 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1
-  },
-  loadingWrapper: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
   }
 });

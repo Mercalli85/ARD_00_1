@@ -110,7 +110,7 @@ export default class MapScreen extends React.Component {
               <TouchableOpacity style={{ alignSelf: "center" }}>
                 <Image
                   style={{}}
-                  source={require("../assets/images/flyer.png")}
+                  source={require("../assets/images/flyerp.png")}
                 />
               </TouchableOpacity>
             </View>
@@ -162,7 +162,7 @@ export default class MapScreen extends React.Component {
               <TouchableOpacity style={{ alignSelf: "center" }}>
                 <Image
                   style={{}}
-                  source={require("../assets/images/flyer.png")}
+                  source={require("../assets/images/flyerp.png")}
                 />
               </TouchableOpacity>
             </View>

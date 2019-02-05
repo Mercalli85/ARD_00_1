@@ -3,29 +3,25 @@ import {
   ImageBackground,
   Image,
   WebView,
-  CameraRoll,
-  Text
+  Text,
+  View,
+  ActivityIndicator,
 } from "react-native";
-import { takeSnapshotAsync } from "expo";
 import { Header, Button } from "react-native-elements";
 
 export default class VolantinoScreen extends React.Component {
-  state = {
-    cameraRollUri: null
-  };
+  constructor(props) {
+    super(props);
+    this.state = { visible: true };
+  }
+
   static navigationOptions = {
     header: null
   };
 
-  _saveToCameraRollAsync = async () => {
-    let result = await takeSnapshotAsync(this._container, {
-      format: "jpg",
-      result: "tmpfile"
-    });
-
-    let saveResult = await CameraRoll.saveToCameraRoll(result, "photo");
-    this.setState({ cameraRollUri: saveResult });
-  };
+  hideSpinner() {
+    this.setState({ visible: false });
+  }
 
   render() {
     return (
@@ -55,25 +51,30 @@ export default class VolantinoScreen extends React.Component {
           }
           containerStyle={{ backgroundColor: "#646366", height: 70 }}
         />
-        <WebView
-          ref={view => {
-            this._container = view;
-          }}
-          collapsable={false}
-          useWebKit={false}
-          source={{
-            url:
-              "https://www.ardsicilia.it/wp-content/uploads/2019/01/18H36.pdf"
-          }}
-        />
+        <View style={{ flex: 1 }}>
+          <WebView
+            onLoad={() => this.hideSpinner()}
+            style={{}}
+            source={{
+              url:
+                "https://www.ardsicilia.it/wp-content/uploads/2019/01/19H01_ARD_web.pdf"
+            }}
 
-        {this.state.cameraRollUri && (
-          <Image
-            source={{ uri: this.state.cameraRollUri }}
-            style={{ width: 200, height: 200 }}
+            ref={view => {
+              this._container = view;
+            }}
+            collapsable={false}
+            useWebKit={false}
+
           />
-        )}
-        <Button title="prova" onPress={this._saveToCameraRollAsync} />
+          {this.state.visible && (
+            <ActivityIndicator
+              style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center' }}
+              size="large"
+            />
+          )}
+        </View>
+
       </ImageBackground>
     );
   }

@@ -18,7 +18,7 @@ const HomeStack = createStackNavigator({
 });
 HomeStack.navigationOptions = {
   tabBarLabel: "Offerte",
-  tabBarIcon: <Image source={require("../assets/images/flyer.png")} />
+  tabBarIcon: <Image source={require("../assets/images/flyerp.png")} />
 };
 
 const AppNavigator = createSwitchNavigator(
@@ -40,7 +40,7 @@ const VolantinoStack = createStackNavigator({
 });
 VolantinoStack.navigationOptions = {
   tabBarLabel: "Volantino",
-  tabBarIcon: <Image source={require("../assets/images/flyer.png")} />
+  tabBarIcon: <Image source={require("../assets/images/flyerp.png")} />
 };
 
 const TabNavigator = createBottomTabNavigator(

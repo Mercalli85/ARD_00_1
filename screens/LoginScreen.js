@@ -10,7 +10,11 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-class LoginScreen extends Component {
+export default class LoginScreen extends Component {
+  state = {
+    validating: false
+  }
+
   render() {
     return (
       <ImageBackground
@@ -43,7 +47,7 @@ class LoginScreen extends Component {
                 shadowRadius: 2
               }}
               placeholder="Inserisci il tuo indirizzo e-mail"
-              onChangeText={text => this.setState({ text })}
+              onChangeText={text => this.setState({ email: text })}
             />
             <TextInput
               secureTextEntry={true}
@@ -66,9 +70,16 @@ class LoginScreen extends Component {
                 shadowRadius: 2
               }}
               placeholder="Scegli la Password"
-              onChangeText={text => this.setState({ text })}
+              onChangeText={text => this.setState({ password: text })}
             />
-            <TouchableOpacity style={{ marginTop: 20, alignItems: "center" }}>
+            <TouchableOpacity
+              style={{ marginTop: 20, alignItems: "center" }}
+              onPress={() => {
+                if (this.state.email && this.state.password) {
+                  this.validate();
+                }
+              }}
+            >
               <Text style={{ fontFamily: "YanoneKaffeesatz" }}>
                 Password dimenticata? Reimposta adesso cliccando qui!
               </Text>
@@ -93,8 +104,57 @@ class LoginScreen extends Component {
       </ImageBackground>
     );
   }
+
+  validate() {
+    this.setState({ validating: true });
+
+    let formData = new FormData();
+    formData.append('type', 'login');
+    formData.append('email', this.state.email);
+    formData.append('password', this.state.password);
+
+    return fetch('https://allevamentosharpei.it/authentication.php', {
+      method: 'POST',
+      body: formData
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        let data = responseJson.data;
+        if (this.saveToStorage(data)) {
+          this.setState({
+            validating: false
+          });
+
+          /* Redirect to accounts page */
+          Actions.pageAccount();
+        } else {
+          console.log('Failed to store auth');
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+	/**
+	 * Store auth credentials to device.
+	 *
+	 */
+  async saveToStorage(userData) {
+    if (userData) {
+      await AsyncStorage.setItem('user', JSON.stringify({
+        isLoggedIn: true,
+        authToken: userData.auth_token,
+        id: userData.user_id,
+        name: userData.user_login
+      })
+      );
+      return true;
+    }
+    return false;
+  }
+
 }
-export default LoginScreen;
+
 
 const styles = StyleSheet.create({
   root: {

@@ -24,7 +24,7 @@ const App = createAppContainer(HomeStack);
 
 HomeStack.navigationOptions = {
   tabBarLabel: "Offerte",
-  tabBarIcon: <Image source={require("../assets/images/star.png")} />
+  tabBarIcon: <Image source={require("../assets/images/starp.png")} />
 };
 
 const ListaStack = createStackNavigator({
@@ -33,7 +33,7 @@ const ListaStack = createStackNavigator({
 
 ListaStack.navigationOptions = {
   tabBarLabel: "Lista spesa",
-  tabBarIcon: <Image source={require("../assets/images/check.png")} />
+  tabBarIcon: <Image source={require("../assets/images/checkp.png")} />
 };
 
 const VolantinoStack = createStackNavigator({
@@ -42,7 +42,7 @@ const VolantinoStack = createStackNavigator({
 
 VolantinoStack.navigationOptions = {
   tabBarLabel: "Volantino",
-  tabBarIcon: <Image source={require("../assets/images/flyer.png")} />
+  tabBarIcon: <Image source={require("../assets/images/flyerp.png")} />
 };
 
 const MapStack = createStackNavigator({
@@ -53,7 +53,7 @@ const MapStack = createStackNavigator({
 
 MapStack.navigationOptions = {
   tabBarLabel: "Punti Vendita",
-  tabBarIcon: <Image source={require("../assets/images/map.png")} />
+  tabBarIcon: <Image source={require("../assets/images/mapp.png")} />
 };
 
 export default createBottomTabNavigator(
